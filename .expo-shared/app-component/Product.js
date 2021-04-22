@@ -55,7 +55,7 @@ export default function ProductScreen({navigation,route}) {
     const [productDetails, setProductDetails] = useState([]);
    useEffect(() => {
     //console.log('im working');
-
+/////
    setProductDetails(moreProducts.filter(ele =>  ele.productId == newProductId ))
   
    }, [newProductId])
