@@ -94,13 +94,15 @@ export default function ProductScreen({navigation,route}) {
       productPrice: 19.49,
       productImage:
         'https://images.unsplash.com/photo-1503341504253-dff4815485f1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60',
+      size : ['S','M','L','XL','XXL']
     },
     {
       productId:2,  
       productName: 'Black Printed Top (Women)',
       productPrice: 19.49,
       productImage:
-        'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=90',
+      'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=90',
+      size : ['S','M','L','XL','XXL']
     },
     { 
       productId:3,
@@ -108,6 +110,7 @@ export default function ProductScreen({navigation,route}) {
       productPrice: 34.99,
       productImage:
         'https://images.unsplash.com/photo-1574180566232-aaad1b5b8450?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60',
+      size : ['S','M','L','XL','XXL']  
     },
     {
       productId:4,  
@@ -115,6 +118,7 @@ export default function ProductScreen({navigation,route}) {
       productPrice: 34.99,
       productImage:
         'https://images.unsplash.com/photo-1512327428889-607eeb19efe8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60',
+      size : ['S','M','L','XL','XXL']
     },
     {
       productId:5,  
@@ -318,22 +322,22 @@ let Rendermenu = (
             Size:
           </Text>
           <View style={{ flexDirection: 'row' }}>
-            {size.map((s) => (
+            {e.size.map((s,index) => (
               <TouchableOpacity
-                key={s.id}
+                key={index}
                 style={
-                  selectedSize === s.label ? styles.tagSelected : styles.tag
+                  selectedSize === s ? styles.tagSelected : styles.tag
                 }
-                onPress={() => setSelectedSize(s.label)}
+                onPress={() => setSelectedSize(s)}
               >
                 <Text
                   style={
-                    selectedSize === s.label
+                    selectedSize === s
                       ? styles.tagLabelSelected
                       : styles.tagLabel
                   }
                 >
-                  {s.label}
+                  {s}
                 </Text>
               </TouchableOpacity>
             ))}
