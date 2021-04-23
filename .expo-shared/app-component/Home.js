@@ -18,7 +18,7 @@ import { useFonts } from 'expo-font';
 import RalewayRegular from '../../assets/fonts/Montserrat/Raleway-Regular.ttf';
 import RalewayBold from '../../assets/fonts/Montserrat/Raleway-Bold.ttf';
 import RalewayExtraBold from '../../assets/fonts/Montserrat/Raleway-ExtraBold.ttf';
-
+import {windowHeightPx, windowWidthPx} from './Product';
 
 
 
@@ -401,7 +401,7 @@ let Rendermenu = (
           <ScrollView  showsHorizontalScrollIndicator={false}>
             <View style={{ flex: 1, flexDirection: 'row', paddingTop: 10 ,flexWrap:'wrap'}}>
               {moreProducts.map((item) => (
-                <View key={item.productId} style={{ marginHorizontal: 10,marginVertical:10,flexBasis:'44%'}}>
+                <View key={item.productId} style={{ marginHorizontal: 10,marginVertical:10,flexBasis:windowWidthPx*50-20}}>
                   <View style={styles.moreProductImageView}>
                     <Image
                       style={{ flex: 1 }}

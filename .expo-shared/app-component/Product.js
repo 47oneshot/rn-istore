@@ -7,7 +7,10 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
-  Animated
+  Animated,
+  Dimensions,
+  useWindowDimensions
+
 } from 'react-native';
 
 import Constants from 'expo-constants';
@@ -20,7 +23,8 @@ import RalewayBold from '../../assets/fonts/Montserrat/Raleway-Bold.ttf';
 import RalewayExtraBold from '../../assets/fonts/Montserrat/Raleway-ExtraBold.ttf';
 
 
-
+export const windowWidthPx = Dimensions.get('window').width/100;
+export const windowHeightPx = Dimensions.get('window').height/100;
 
 
 
@@ -126,6 +130,7 @@ export default function ProductScreen({navigation,route}) {
       productPrice: 44.85,
       productImage:
         'https://images.unsplash.com/photo-1456885284447-7dd4bb8720bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60',
+        size : ['S','M','L','XL','XXL']
     },
   ]);
 
