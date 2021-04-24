@@ -20,12 +20,24 @@ import RalewayBold from '../../assets/fonts/Montserrat/Raleway-Bold.ttf';
 import RalewayExtraBold from '../../assets/fonts/Montserrat/Raleway-ExtraBold.ttf';
 import {windowHeightPx, windowWidthPx} from './Product';
 
+import {connect} from 'react-redux'
+import { ADD_TO_CART } from './redux/action';
 
 
+const MapSateProps = (state) =>(
+  {
+    products : state.shop.products,
+    carts :state.shop.cart
+    
+  }
+)
 
 
-
-
+const mapDispatch= (dispatch) =>(
+  {
+    addToCart : (id) => dispatch(ADD_TO_CART(id)),
+  }
+)
 
 
 
@@ -47,7 +59,7 @@ const Rating = ({ rating, maxRating }) => {
   );
 };
 
-export default function HomeScreen({navigation}) {
+function HomeScreen({navigation,products,addToCart,carts}) {
   const [loaded] = useFonts({
     RalewayRegular,
     RalewayBold,
@@ -70,54 +82,24 @@ export default function HomeScreen({navigation}) {
 
   const [seeFullDescription, setSeeFullDescription] = useState(false);
 
-  const [moreProducts] = useState([
-    {
-      productId:1,  
-      productName: 'Black Printed Tshirt',
-      productPrice: 19.49,
-      productImage:
-        'https://images.unsplash.com/photo-1503341504253-dff4815485f1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60',
-    },
-    {
-      productId:2,  
-      productName: 'Black Printed Top (Women)',
-      productPrice: 19.49,
-      productImage:
-        'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=90',
-    },
-    { 
-      productId:3,
-      productName: 'White Solid Tshirt',
-      productPrice: 34.99,
-      productImage:
-        'https://images.unsplash.com/photo-1574180566232-aaad1b5b8450?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60',
-    },
-    {
-      productId:4,  
-      productName: 'Black Solid Tshirt',
-      productPrice: 34.99,
-      productImage:
-        'https://images.unsplash.com/photo-1512327428889-607eeb19efe8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60',
-    },
-    {
-      productId:5,  
-      productName: 'Red Top (Women)',
-      productPrice: 44.85,
-      productImage:
-        'https://images.unsplash.com/photo-1456885284447-7dd4bb8720bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60',
-    },
-  ]);
+  const [moreProducts] = useState(products);
+  const [productInCarts,setProductInCarts] = useState(carts);
 
   useEffect(() => {
     StatusBar.setBarStyle('dark-content');
     StatusBar.setBackgroundColor('#fff');
-  }, []);
+    setProductInCarts(carts);
+
+  }, [carts]);
 
   const [showMenu, isShowMenu] = useState(false);
+
+
 const  __handleMenu = () =>{
    isShowMenu(true);
    animate();
 }
+
 const [activeMenu,setActivemenu]=useState('Home')
 
 const [MenuItem] = useState([
@@ -203,6 +185,33 @@ const animate = ()=> {
     );
   }
 */
+/*
+const  RenderCart = () =>  {
+return
+(
+  <View style={{flex:1,justifyContent:'flex-end',flexDirection:'column',backgroundColor:'#fff',zIndex:999,height:800, width:350,position:'absolute',top: 0,right:0}}>
+   {productInCarts.map((item,index) => 
+     <View key={index} style={{flex: 1,flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
+       <View style={{flex:1,height:50,width:50}}>
+        <Image
+            style={{ flex: 1 }}
+            source={{
+                     uri: item.productImage,
+                    }}/>
+       </View>
+       <View style={{flex:2,flexDirection:'column'}}>
+       <Text>{item.productName}</Text>
+       <Text>{item.quantity}</Text>
+       </View>
+       <View style={{flex:1}}>
+       <FAIcon name='close' size={30} color={'#7bad9a'}  onPress={() => isShowMenu(false)} />
+       </View>
+     </View>
+)}
+  </View>
+)}*/
+
+
 let Rendermenu = (
   <Animated.View  style={
     {
@@ -255,14 +264,13 @@ let Rendermenu = (
     }}>
       
       {showMenu==true?Rendermenu: <View></View>}
-   
-      
+
     <View  style={{flex: 1,zIndex:1}} >
       <View style={styles.header}>
         <Icon name='menu' size={30} onPress={__handleMenu} color={'#7bad9a'} />
          
         <Text style={styles.headerTitle}>Home</Text>
-        <Icon name='shopping-bag' size={26} color={'#7bad9a'}  />
+        <Icon name='shopping-bag' size={26} onPress={()=>navigation.navigate('Cart')} color={'#7bad9a'}  />
       </View>
       <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1,zIndex:1}}>
        
@@ -428,6 +436,7 @@ let Rendermenu = (
                           style={styles.moreProductIcon}
                           name='shopping-bag'
                           size={18}
+                          onPress={() => addToCart(item.productId)}
                         />
                         <Icon
                           style={styles.moreProductIcon}
@@ -611,3 +620,6 @@ const styles = StyleSheet.create({
   }
 
 });
+
+
+export default (connect(MapSateProps,mapDispatch))(HomeScreen);

@@ -68,7 +68,7 @@ export default function ProductScreen({navigation,route}) {
     RalewayBold,
     RalewayExtraBold,
   });
-  console.log(productDetails);
+  
 
  const __productUpdate = async(id)=>{
      console.log(id);
