@@ -550,7 +550,7 @@ let Rendermenu = (
       
       </ScrollView>
       
-      <TabBarNavigate activeTab={activeTab} onPress={navigation.navigate}/>
+     {/* <TabBarNavigate activeTab={activeTab} onPress={navigation.navigate}/>*/}
     </View>
     
     </View>

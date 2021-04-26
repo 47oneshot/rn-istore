@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import { View,TouchableOpacity,StyleSheet} from 'react-native'
 import {windowWidthPx,windowHeightPx} from '../Product';
-import { Feather as Icon, FontAwesome as FAIcon } from '@expo/vector-icons';
-
+import { Feather as Icon1, FontAwesome as FAIcon } from '@expo/vector-icons';
+import { Entypo as Icon } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 
 import RalewayRegular from '../../assets/fonts/Montserrat/Raleway-Regular.ttf';
@@ -24,15 +24,15 @@ export default function TabBarNavigate(props) {
   const rootWhite='#fff';
   const rootButton ='#ba8d23';
 
-  const [activeTab,setActiveTab]=useState(props.activeTab);
+  const [activeTab,setActiveTab]=useState('Home');
   
 
   console.log(activeTab);
     const [tabBar] = useState([
         { id:1, label: 'Home' ,icon:'home',Screen:'Home'},
-        { id:2, label: 'User',icon:'user' ,Screen:'Cart'},
+        { id:2, label: 'User',icon:'shop' ,Screen:'Shop'},
         { id:3,  label: 'Wishlist' ,icon:'heart',Screen:'Wishlist'},
-        { id:4,  label: 'Shop' ,icon:'shopping-cart',Screen:'Shop'},
+        { id:4,  label: 'Shop' ,icon:'shopping-cart',Screen:'Cart'},
       ]);
 
     return (
@@ -46,10 +46,10 @@ export default function TabBarNavigate(props) {
        
         <TouchableOpacity activeOpacity={0.9}  key={item.id}  onPress={()=>{
         //  setActiveTab(item.label);
-          props.onPress(item.Screen);
-          setActiveTab(props.activeTab)
+          props.navigation.navigate(item.Screen);
+          setActiveTab(item.label)
 
-        }}  style={activeTab==item.label?styles.tabBarActive:styles.tabBar}><Icon name={item.icon} size={30} color={rootGrey} /></TouchableOpacity>
+        }}  style={activeTab==item.label?styles.tabBarActive:styles.tabBar}><Icon name={item.icon} size={30} color={rootGrey} />{props.prop}</TouchableOpacity>
       )}  
       
       </View> 

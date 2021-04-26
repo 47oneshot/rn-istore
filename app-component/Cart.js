@@ -307,7 +307,7 @@ pattern={[
  <View style={{ height: 40 }}></View>
  </View>       
  
- <TabBarNavigate activeTab={activeTab} onPress={navigation.navigate}/>
+
  
 </ View>
     )
