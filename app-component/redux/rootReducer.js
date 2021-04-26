@@ -77,7 +77,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
     case actionType.QUANTITY_ANALYZE : {
         return  {
             ...state,
-            cart : state.cart.map(ele => ele.productId === action.payload.id ? {...item ,quantity:action.payload.quantity}: item)
+            cart : state.cart.map(ele => ele.productId === action.payload.id ? {...ele ,quantity:action.payload.quantity}: ele)
 
         }
     }

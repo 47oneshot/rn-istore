@@ -18,9 +18,9 @@ import { Feather as Icon, FontAwesome as FAIcon } from '@expo/vector-icons';
 
 import { useFonts } from 'expo-font';
 
-import RalewayRegular from '../../assets/fonts/Montserrat/Raleway-Regular.ttf';
-import RalewayBold from '../../assets/fonts/Montserrat/Raleway-Bold.ttf';
-import RalewayExtraBold from '../../assets/fonts/Montserrat/Raleway-ExtraBold.ttf';
+import RalewayRegular from '../assets/fonts/Montserrat/Raleway-Regular.ttf';
+import RalewayBold from '../assets/fonts/Montserrat/Raleway-Bold.ttf';
+import RalewayExtraBold from '../assets/fonts/Montserrat/Raleway-ExtraBold.ttf';
 
 
 export const windowWidthPx = Dimensions.get('window').width/100;
